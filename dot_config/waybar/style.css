@@ -1,0 +1,88 @@
+@import "theme.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+}
+
+window#waybar {
+  background: @bg;
+  color: @fg;
+}
+
+#custom-logo {
+  padding: 0 14px;
+  font-weight: bold;
+  color: @accent;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  color: @dim;
+  background: transparent;
+  box-shadow: none;
+}
+
+#workspaces button.active {
+  color: @accent;
+}
+
+#workspaces button.urgent {
+  color: @critical;
+}
+
+#workspaces button:hover {
+  background: transparent;
+  color: @hover-fg;
+}
+
+#cpu,
+#memory,
+#clock,
+#network,
+#pulseaudio,
+#backlight,
+#custom-theme,
+#custom-power {
+  padding: 0 10px;
+}
+
+#cpu:hover,
+#memory:hover,
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#custom-theme:hover {
+  color: @accent;
+  background: @hover-bg;
+}
+
+#cpu.warning,
+#memory.warning {
+  color: @warning;
+}
+
+#cpu.critical,
+#memory.critical {
+  color: @critical;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+  color: @dim;
+}
+
+#custom-power {
+  padding-right: 14px;
+  color: @accent;
+}
+
+#custom-power:hover {
+  color: @critical;
+}

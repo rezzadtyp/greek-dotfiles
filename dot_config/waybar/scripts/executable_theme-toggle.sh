@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Toggle dark/light mode for Waybar, swaync, eww and GTK apps.
+dir="$HOME/.config/waybar"
+state="$dir/theme.css"
+swaync="$HOME/.config/swaync"
+eww="$HOME/.config/eww"
+
+current() { cmp -s "$state" "$dir/themes/light.css" && echo light || echo dark; }
+
+case "$1" in
+  toggle)
+    if [ "$(current)" = dark ]; then
+      cp "$dir/themes/light.css" "$state"
+      cp "$swaync/themes/light.css" "$swaync/theme.css"
+      cp "$eww/themes/light.scss" "$eww/theme.scss"
+      gsettings set org.gnome.desktop.interface color-scheme prefer-light
+      gsettings set org.gnome.desktop.interface gtk-theme Adwaita
+    else
+      cp "$dir/themes/dark.css" "$state"
+      cp "$swaync/themes/dark.css" "$swaync/theme.css"
+      cp "$eww/themes/dark.scss" "$eww/theme.scss"
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+      gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+    fi
+    pkill -SIGUSR2 waybar
+    swaync-client -rs >/dev/null 2>&1
+    eww ping >/dev/null 2>&1 && eww reload >/dev/null 2>&1
+    ;;
+  *)
+    [ "$(current)" = dark ] && echo "󰖔" || echo "󰖨"
+    ;;
+esac

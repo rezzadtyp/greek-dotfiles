@@ -1,0 +1,82 @@
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  color: #d0d0d0;
+}
+
+.popover {
+  background: #0b0b0b;
+  border: 1px solid #262626;
+  border-radius: 0px;
+  padding: 16px;
+  min-width: 320px;
+}
+
+.title { font-size: 15px; font-weight: bold; color: #ffffff; }
+.section { color: #7a7a7a; font-size: 12px; }
+.sep { min-height: 1px; background: #1e1e1e; margin: 4px 0; }
+
+.pill {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: #1c1c1c;
+  color: #9a9a9a;
+  font-size: 12px;
+}
+.pill.on { background: #ffffff; color: #000000; }
+.pill:hover { opacity: 0.85; }
+
+.icon {
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 0px;
+  background: #1a1a1a;
+  font-size: 15px;
+}
+.icon:hover { background: #262626; }
+.icon.small { min-width: 26px; min-height: 26px; font-size: 13px; }
+
+.value { min-width: 38px; color: #9a9a9a; font-size: 12px; }
+
+.slider trough {
+  min-height: 6px;
+  border-radius: 999px;
+  background: #222222;
+}
+.slider highlight {
+  border-radius: 999px;
+  background: #ffffff;
+}
+.slider slider {
+  min-width: 14px;
+  min-height: 14px;
+  margin: -5px 0;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.row {
+  padding: 8px 10px;
+  border-radius: 0px;
+}
+.row:hover { background: #181818; }
+.row.active { background: #161616; }
+.row.active label { color: #ffffff; }
+
+.net-icon { font-size: 15px; }
+.lock, .check { color: #7a7a7a; min-width: 14px; }
+
+.pw-box { padding: 2px 0 6px 0; }
+.pw {
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #ffffff;
+}
+
+scrollbar slider { background: #333; border-radius: 0px; min-width: 4px; }
+
+.pill.on, .pill.on label { color: #000000; }
+.check { color: #ffffff; min-width: 16px; }

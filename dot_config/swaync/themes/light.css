@@ -1,0 +1,23 @@
+:root {
+  --surface-lowest: #ffffff;
+  --surface: #fafafa;
+  --surface-low: #f2f2f2;
+  --surface-container: #ebebeb;
+  --surface-high: #e0e0e0;
+  --surface-highest: #d4d4d4;
+  --outline: #d0d0d0;
+  --outline-low: #e4e4e4;
+  --outline-mid: #d8d8d8;
+  --outline-variant: #b0b0b0;
+  --track: #e0e0e0;
+  --scroll-thumb: #c8c8c8;
+  --hover: #f0f0f0;
+  --overlay: rgba(255, 255, 255, 0.75);
+  --noti-bg-rgb: 255, 255, 255;
+  --primary: #000000;
+  --on-primary: #ffffff;
+  --text: #2a2a2a;
+  --text-dim: #555555;
+  --text-muted: #777777;
+  --text-disabled: #aaaaaa;
+}

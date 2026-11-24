@@ -1,0 +1,106 @@
+;; ---------- state ----------
+(defvar vol_open false)
+(defvar wifi_open false)
+(defvar wifi_pw_ssid "")
+(defvar wifi_msg "")
+(defvar wifi_pw "")
+(defvar reveal false)
+
+(defpoll audio :interval "1s" :run-while vol_open
+  :initial '{"vol":0,"muted":false,"icon":"󰕾","mic":0,"micmuted":false,"devices":[]}'
+  "~/.config/eww/scripts/audio.py status")
+
+(defpoll wifi :interval "2s" :run-while wifi_open
+  :initial '{"enabled":true,"current":"","networks":[]}'
+  "~/.config/eww/scripts/wifi.py status")
+
+;; ---------- shared ----------
+(defwidget popover [title ?onclose]
+  (revealer :reveal reveal :transition "slidedown" :duration "250ms"
+    (eventbox :onhoverlost onclose
+      (box :class "popover" :orientation "v" :space-evenly false :spacing 10
+        (box :class "header" :space-evenly false
+          (label :class "title" :text title :hexpand true :xalign 0)
+          (children :nth 0))
+        (children :nth 1)))))
+
+;; ---------- sound ----------
+(defwidget volume-panel []
+  (popover :title "Sound" :onclose "~/.config/eww/scripts/toggle.sh close &"
+    (button :class "pill ${audio.muted ? '' : 'on'}"
+            :onclick "~/.config/eww/scripts/audio.py mute"
+      {audio.muted ? "Muted" : "On"})
+    (box :orientation "v" :space-evenly false :spacing 10
+      (label :class "section" :text "Output" :xalign 0)
+      (box :class "slider-row" :space-evenly false :spacing 10
+        (button :class "icon" :onclick "~/.config/eww/scripts/audio.py mute" {audio.icon})
+        (scale :class "slider" :hexpand true :min 0 :max 101 :value {audio.vol}
+               :onchange "~/.config/eww/scripts/audio.py set {}")
+        (label :class "value" :text "${audio.vol}%"))
+      (label :class "section" :text "Microphone" :xalign 0)
+      (box :class "slider-row" :space-evenly false :spacing 10
+        (button :class "icon" :onclick "~/.config/eww/scripts/audio.py mutemic"
+          {audio.micmuted ? "󰍭" : "󰍬"})
+        (scale :class "slider" :hexpand true :min 0 :max 101 :value {audio.mic}
+               :onchange "~/.config/eww/scripts/audio.py setmic {}")
+        (label :class "value" :text "${audio.mic}%"))
+      (box :class "sep")
+      (label :class "section" :text "Output device" :xalign 0)
+      (box :orientation "v" :space-evenly false :spacing 2
+        (for d in {audio.devices}
+          (button :class "row ${d.active ? 'active' : ''}"
+                  :onclick "~/.config/eww/scripts/audio.py device '${d.name}'"
+            (box :space-evenly false :spacing 10 :hexpand true
+              (label :class "check" :text {d.active ? "" : ""})
+              (label :text {d.label} :xalign 0 :hexpand true :limit-width 34))))))))
+
+(defwindow volume
+  :monitor 0
+  :geometry (geometry :x "10px" :y "6px" :anchor "top right")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (volume-panel))
+
+;; ---------- wi-fi ----------
+(defwidget wifi-panel []
+  (popover :title "Wi-Fi" :onclose "~/.config/eww/scripts/toggle.sh close &"
+    (button :class "pill ${wifi.enabled ? 'on' : ''}"
+            :onclick "~/.config/eww/scripts/wifi.py toggle"
+      {wifi.enabled ? "On" : "Off"})
+    (box :orientation "v" :space-evenly false :spacing 8
+      (box :class "status-row" :space-evenly false
+        (label :class "section" :hexpand true :xalign 0
+               :text {wifi_msg != "" ? wifi_msg :
+                      !wifi.enabled ? "Wi-Fi is off" :
+                      wifi.current != "" ? "Connected" : "Not connected"})
+        (button :class "icon small" :visible {wifi.enabled}
+                :onclick "~/.config/eww/scripts/wifi.py rescan &" "󰑐"))
+      (revealer :reveal {wifi_pw_ssid != ""} :transition "slidedown" :duration "150ms"
+        (box :class "pw-box" :orientation "v" :space-evenly false :spacing 6
+          (label :class "section" :xalign 0 :text "Password for ${wifi_pw_ssid}")
+          (box :space-evenly false :spacing 6
+            (input :class "pw" :hexpand true :password true
+                   :onchange "eww update wifi_pw={}"
+                   :onaccept "~/.config/eww/scripts/wifi.py connect '${wifi_pw_ssid}' {} &")
+            (button :class "pill on"
+                    :onclick "~/.config/eww/scripts/wifi.py connect '${wifi_pw_ssid}' '${wifi_pw}' &"
+              "Join"))))
+      (box :visible {wifi.enabled}
+        (box :orientation "v" :space-evenly false :spacing 2
+          (for n in {wifi.networks}
+            (button :class "row ${n.active ? 'active' : ''}"
+                    :onclick "~/.config/eww/scripts/wifi.py click '${n.ssid}' ${n.secure} ${n.known} ${n.active} &"
+              (box :space-evenly false :spacing 10 :hexpand true
+                (label :class "net-icon" :text {n.icon})
+                (label :text {n.ssid} :xalign 0 :hexpand true :limit-width 26)
+                (label :class "lock" :text {n.secure ? "󰌾" : ""})
+                (label :class "check" :text {n.active ? "" : ""})))))))))
+
+(defwindow wifi
+  :monitor 0
+  :geometry (geometry :x "10px" :y "6px" :anchor "top right")
+  :stacking "overlay"
+  :exclusive false
+  :focusable true
+  (wifi-panel))

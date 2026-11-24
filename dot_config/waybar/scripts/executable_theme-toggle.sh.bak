@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Toggle dark/light mode for Waybar and GTK apps.
+dir="$HOME/.config/waybar"
+state="$dir/theme.css"
+
+current() { cmp -s "$state" "$dir/themes/light.css" && echo light || echo dark; }
+
+case "$1" in
+  toggle)
+    if [ "$(current)" = dark ]; then
+      cp "$dir/themes/light.css" "$state"
+      gsettings set org.gnome.desktop.interface color-scheme prefer-light
+      gsettings set org.gnome.desktop.interface gtk-theme Adwaita
+    else
+      cp "$dir/themes/dark.css" "$state"
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+      gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+    fi
+    pkill -SIGUSR2 waybar
+    ;;
+  *)
+    [ "$(current)" = dark ] && echo "󰖔" || echo "󰖨"
+    ;;
+esac

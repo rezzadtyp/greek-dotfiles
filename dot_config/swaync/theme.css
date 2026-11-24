@@ -1,0 +1,23 @@
+:root {
+  --surface-lowest: #0b0b0b;
+  --surface: #101010;
+  --surface-low: #161616;
+  --surface-container: #1c1c1c;
+  --surface-high: #262626;
+  --surface-highest: #323232;
+  --outline: #262626;
+  --outline-low: #1e1e1e;
+  --outline-mid: #2a2a2a;
+  --outline-variant: #454545;
+  --track: #222222;
+  --scroll-thumb: #333333;
+  --hover: #181818;
+  --overlay: rgba(11, 11, 11, 0.75);
+  --noti-bg-rgb: 11, 11, 11;
+  --primary: #ffffff;
+  --on-primary: #000000;
+  --text: #d0d0d0;
+  --text-dim: #9a9a9a;
+  --text-muted: #7a7a7a;
+  --text-disabled: #555555;
+}

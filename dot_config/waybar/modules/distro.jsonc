@@ -1,0 +1,46 @@
+{
+  "custom/distro": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/terminal": {
+    "format": "󰆍",
+    "on-click": "kitty",
+    "tooltip": false
+  },
+  "custom/code": {
+    "format": "󰨞",
+    "on-click": "code",
+    "tooltip": false
+  },
+  // "custom/obsidian": {
+  //   "format": "󰹕",
+  //   "on-click": "obsidian",
+  //   "tooltip": false
+  // },
+  // "custom/office": {
+  //   "format": "󰏆",
+  //   "on-click": "onlyoffice-desktopeditors",
+  //   "tooltip": false
+  // },
+  "custom/files": {
+    "format": "",
+    "on-click": "thunar",
+    "tooltip": false
+  },
+  "custom/spotify": {
+    "format": "",
+    "on-click": "spotify",
+    "tooltip": false
+  },
+  "custom/discord": {
+    "format": "",
+    "on-click": "flatpak run com.discordapp.Discord",
+    "tooltip": false
+  },
+  "custom/browser": {
+    "format": "",
+    "on-click": "env DESKTOPINTEGRATION=1 /home/blanc/Downloads/helium.appimage",
+    "tooltip": false
+  }
+}

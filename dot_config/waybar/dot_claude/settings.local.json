@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -rn -B4 -A12 \"browser\" /home/blanc/.config/waybar/tokens/widget.css; echo \"=== which ===\"; which helium helium-browser 2>&1; echo \"=== desktop ===\"; ls /usr/share/applications ~/.local/share/applications /var/lib/flatpak/exports/share/applications 2>/dev/null | grep -i helium)",
+      "Read(//usr/share/applications/**)",
+      "Bash(fc-list)"
+    ]
+  }
+}

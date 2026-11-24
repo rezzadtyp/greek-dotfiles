@@ -1,0 +1,84 @@
+@import "theme";
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  color: $text;
+}
+
+.popover {
+  background: $bg;
+  border: 1px solid $outline;
+  border-radius: 0px;
+  padding: 16px;
+  min-width: 320px;
+}
+
+.title { font-size: 15px; font-weight: bold; color: $primary; }
+.section { color: $muted; font-size: 12px; }
+.sep { min-height: 1px; background: $sep; margin: 4px 0; }
+
+.pill {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: $pill;
+  color: $dim;
+  font-size: 12px;
+}
+.pill.on { background: $primary; color: $on-primary; }
+.pill:hover { opacity: 0.85; }
+
+.icon {
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 0px;
+  background: $icon;
+  font-size: 15px;
+}
+.icon:hover { background: $icon-hover; }
+.icon.small { min-width: 26px; min-height: 26px; font-size: 13px; }
+
+.value { min-width: 38px; color: $dim; font-size: 12px; }
+
+.slider trough {
+  min-height: 6px;
+  border-radius: 999px;
+  background: $track;
+}
+.slider highlight {
+  border-radius: 999px;
+  background: $primary;
+}
+.slider slider {
+  min-width: 14px;
+  min-height: 14px;
+  margin: -5px 0;
+  border-radius: 999px;
+  background: $primary;
+}
+
+.row {
+  padding: 8px 10px;
+  border-radius: 0px;
+}
+.row:hover { background: $hover; }
+.row.active { background: $active; }
+.row.active label { color: $primary; }
+
+.net-icon { font-size: 15px; }
+.lock, .check { color: $muted; min-width: 14px; }
+
+.pw-box { padding: 2px 0 6px 0; }
+.pw {
+  background: $active;
+  border: 1px solid $outline-mid;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: $primary;
+}
+
+scrollbar slider { background: $thumb; border-radius: 0px; min-width: 4px; }
+
+.pill.on, .pill.on label { color: $on-primary; }
+.check { color: $primary; min-width: 16px; }

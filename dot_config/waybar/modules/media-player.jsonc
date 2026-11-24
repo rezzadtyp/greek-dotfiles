@@ -1,0 +1,11 @@
+{
+  "custom/music": {
+    "exec": "$HOME/.config/waybar/scripts/music_panel.sh",
+    "format": "{}",
+    "restart-interval": 1,
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl position 5+",
+    "on-scroll-down": "playerctl position 5-",
+    "tooltip-format": "Click to play/pause | Scroll to seek"
+  }
+}

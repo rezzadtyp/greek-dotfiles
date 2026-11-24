@@ -1,0 +1,8 @@
+@define-color bg        #ffffff;
+@define-color fg        #2a2a2a;
+@define-color accent    #000000;
+@define-color dim       #aaaaaa;
+@define-color hover-fg  #555555;
+@define-color hover-bg  #e8e8e8;
+@define-color warning   #c26a00;
+@define-color critical  #d32f2f;
